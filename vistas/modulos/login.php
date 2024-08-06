@@ -1,0 +1,105 @@
+<?php
+
+    $item = null;
+    $valor = null;  
+    $ingreso = 1; 
+
+    $periodos = ControladorPeriodos::ctrMostrarPeriodos($item, $valor, $ingreso);
+
+
+?>  
+
+<div id="back"></div>
+
+<div class="login-box">
+
+  <div class="login-logo">
+   
+
+   <!-- <h2>ESRN Nº 153</h2> -->
+
+   <img src="vistas/img/plantilla/logo.png" class="img-responsive" style="padding:60px 130px 0px 130px">
+ 
+  </div>
+
+  
+  <div class="login-box-body">
+    <p class="login-box-msg">Ingresar al sistema</p>
+
+    <form method="post">
+
+      <div class="form-group has-feedback">
+
+        <input type="text" class="form-control" placeholder="Usuario" id="ingUsuario" name="ingUsuario" required>
+
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Contraseña" name="ingPassword" id="ingPassword" required>
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+
+<!--       <div class="form-group">
+           <label>Período</label>
+           <select class="form-control" id="periodo" name="periodo" required>
+              <option value="">-- Seleccione --</option>              
+              <option value="01/2022">01/2022</option>
+              <option value="02/2022">02/2022</option>
+              <option value="01/2023">01/2023</option>
+           </select>
+      </div> -->
+      
+      <div class="form-group has-feedback">
+                
+                
+                  
+                  
+                  
+                  <select class="form-control" name="periodo" required>
+
+                    <option value="">Seleccionar Período</option>
+
+                    <?php
+
+                      foreach ($periodos as $key => $value) {
+
+                        echo '<option value="'.$value["nombre"].'">'.$value["nombre"].'</option>';
+                        
+                      }
+
+                    ?>
+                                        
+
+
+                  </select>
+
+               
+
+              </div>
+
+
+      <div class="row">
+        
+        <div class="col-xs-4">
+
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+
+        </div>
+        
+      </div>
+
+      <?php
+
+          $login = new ControladorUsuarios();
+          $login -> ctrIngresoUsuario();
+
+      ?>
+
+    </form>
+
+ 
+  </div>
+  
+</div>
+
